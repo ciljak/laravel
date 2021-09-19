@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+  
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -18,15 +21,30 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+           .menu-div a {
+               display: block;
+               color: red;
+               text-decoration: none;
+           }
         </style>
     </head>
-    <body class="antialiased">
+    <body class="antialiased"> 
+        
+        {!! $MyNavBar->asUl() !!} <!-- way how menu is implemented, further reading // way how to implement lavary menus https://github.com/lavary/laravel-menu, 19.9.2021 -->
+        
+        {!! $MyNavBar->asDiv( array('class' => 'menu-div') ) !!}
+
+       
+
+      
+        
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                     @else
+                    
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
 
                         @if (Route::has('register'))
@@ -44,6 +62,8 @@
                         </g>
                     </svg>
                 </div>
+
+                {!! $SecondNavBar->asUl() !!}
                 <!-- old default page code 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">
@@ -71,7 +91,7 @@
                                     Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
                                 </div>
                             </div>
-                        </div>
+                        </div> 
 
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700">
                             <div class="flex items-center">
@@ -99,8 +119,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                                    -->
+                </div>-->
+                                   
 
                 <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
                     <div class="text-center text-sm text-gray-500 sm:text-left">
